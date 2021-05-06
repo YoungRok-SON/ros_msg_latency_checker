@@ -52,19 +52,19 @@ find_package(Boost REQUIRED COMPONENTS system)
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-# # Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#     latency_check.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  latency_check_img_topic.msg
+  latency_check_int64_topic.msg
+)
 
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  latency_check.srv
-  latency_check_img.srv
-  )
+    latency_check_img.srv
+    latency_check.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -150,23 +150,44 @@ include_directories(  ${catkin_INCLUDE_DIRS} )
 
 ## Specify libraries to link a library or executable target against
 
-add_executable(server_node src/server_node.cpp)
+add_executable(server_node src/service/server_node.cpp)
 add_dependencies(server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(server_node
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )
 
-add_executable(client_node src/client_node.cpp)
+add_executable(client_node src/service/client_node.cpp)
 add_dependencies(client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(client_node
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )
 
-add_executable(client_node_img  src/client_node_img.cpp)
+add_executable(client_node_img  src/service/client_node_img.cpp)
 add_dependencies(client_node_img ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(client_node_img
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+add_executable(server_node_topic src/topic/server_node_topic.cpp)
+add_dependencies(server_node_topic ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(server_node_topic
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+add_executable(client_node_topic src/topic/client_node_topic.cpp)
+add_dependencies(client_node_topic ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(client_node_topic
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+add_executable(client_node_img_topic  src/topic/client_node_img_topic.cpp)
+add_dependencies(client_node_img_topic ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(client_node_img_topic
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )
