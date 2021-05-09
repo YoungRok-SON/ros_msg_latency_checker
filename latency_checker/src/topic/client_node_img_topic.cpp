@@ -42,7 +42,7 @@ std_msgs::Header header;
 
 int load_img()
 {   
-    cv::String imageName("/home/youngrok/Pictures/train.jpg");
+    cv::String imageName("/home/youngrok/Pictures/1080img.jpg");
     cv::String Windowname( "Display Window ");
     img = cv::imread(imageName, cv::IMREAD_COLOR);
 

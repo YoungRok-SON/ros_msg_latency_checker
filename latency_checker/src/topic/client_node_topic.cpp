@@ -17,7 +17,7 @@ double sum = 0;
 double avg;
 double min;
 double max;
-std::vector<double> avgVec(10000,0);
+std::vector<double> avgVec(100000,0);
 std_msgs::Header msg;
 
 
