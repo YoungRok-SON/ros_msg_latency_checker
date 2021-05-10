@@ -19,10 +19,7 @@ double max;
 std::vector<double> avgVec(10000,0);
 
 
-double timeChecker(double time)
-{
-    return time; //change this value to time.
-}
+
 
 double latencyChecker(double start, double end)
 {
@@ -48,8 +45,8 @@ int main(int argc, char **argv)
         //check ack and latency
         if (client.call(srv))
         {
-            start_sent = timeChecker(ros::Time::now().toSec());
-            end_recieved = timeChecker(ros::Time::now().toSec());
+            start_sent = ros::Time::now().toSec();
+            end_recieved = ros::Time::now().toSec();
             latency = latencyChecker(start_sent, end_recieved);
             ROS_INFO_STREAM("seq : "<< seq+1 <<" start : " << start_sent << " end : " << end_recieved << " latency : " << latency );
             
